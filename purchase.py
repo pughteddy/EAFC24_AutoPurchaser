@@ -26,7 +26,7 @@ def search():
 
 
 def attempt_purchase():
-    pyautogui.locateOnScreen('images/buy/BuyNow.PNG', confidence=0.80)
+    pyautogui.locateOnScreen('images/BuyNow.PNG', confidence=0.80)
     print("Found results, attempting a purchase")
     click(coordinates[1][0], coordinates[1][1])  # Buy Now
     time.sleep(random.randrange(75, 111, 1) / 100)
@@ -48,22 +48,22 @@ if __name__ == "__main__":
     load_coordinates()
     time.sleep(3)
 
-    totalSearches = 0
-    totalPurchases = 0
+    total_searches = 0
+    total_purchases = 0
     MAX_TOTAL_SEARCHES = 40
 
     print("Beginning search...")
-    while not keyboard.is_pressed('q') and totalSearches < MAX_TOTAL_SEARCHES:
+    while not keyboard.is_pressed('q') and total_searches < MAX_TOTAL_SEARCHES:
         search()
         try:
             attempt_purchase()
-            totalPurchases += 1
+            total_purchases += 1
         except pyautogui.ImageNotFoundException as e:
             print("Did not find any results")
         reset()
-        totalSearches += 1
-        print("Total Searches: %s Total Purchases: %s" % (totalSearches, totalPurchases))
+        total_searches += 1
+        print("Total Searches: %s Total Purchases: %s" % (total_searches, total_purchases))
 
 
     if keyboard.is_pressed('q'):
-        print("Ending script. Final results.. Total Searches: %s Total Purchase: %s" % (totalSearches, totalPurchases))
+        print("Ending script. Final results.. Total Searches: %s Total Purchase: %s" % (total_searches, total_purchases))
